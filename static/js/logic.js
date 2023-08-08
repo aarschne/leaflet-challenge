@@ -56,10 +56,8 @@ function createFeatures(earthquakeData) {
 
   // Getting our GeoJSON data
   d3.json(link).then(function(data) {
-
     createFeatures(data.features);
 });
-
 
 function createMap(earthquakes) {
 
