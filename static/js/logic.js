@@ -19,7 +19,7 @@ function createFeatures(earthquakeData) {
 
     console.log(earthquakeData);
     // Define a function that we want to run once for each feature in the features array.
-    // Give each feature a popup that describes the place and time of the earthquake.
+    // Give each feature a popup that describes the magnitude, place, and depth of each earthquake
     function onEachFeature(feature, layer) {
         layer.bindPopup(`<h3>Magnitude is: ${feature.properties.mag}</h3> 
         <hr><p>Location is: ${feature.properties.place}</p> <hr><p>Depth is: ${feature.geometry.coordinates[2]}</p>`);
@@ -60,9 +60,6 @@ function createFeatures(earthquakeData) {
     createFeatures(data.features);
 });
 
-function getColorInd(d) {
-    return "#FF0000";
-}
 
 function createMap(earthquakes) {
 
@@ -79,31 +76,8 @@ function createMap(earthquakes) {
       zoom: 5,
       layers: [earthquakes, street]
     });
-    
-    /* var legend = L.control({
-        position: 'bottomright'
-    });
-    legend.onAdd = function (map) {
-    
-        var div = L.DomUtil.create('div', 'legend')
-            labels = ['<strong>index</strong>'],
-            limits = ["<5", "5 to <10", "10 to <15", ">15"],
-            colors = ["green", "yellow" ,"orange", "red"];
-    
-        for (var i = 0; i < limits.length; i++) {
-            div.innerHTML += labels.push(
-                '<i class = "circle" style="background:' + colors[i] + '"></div>' + limits[i]);
-        }
-        div.innerHTML = labels.join('<br>');
-        return div;
-    };
-    
-    
 
-
-    legend.addTo(myMap);
-    */
-
+    // create legend
     var legend = L.control({position: 'bottomright'});
 
     legend.onAdd = function (map) {
@@ -122,5 +96,6 @@ function createMap(earthquakes) {
     return div;
 };
 
+// add legend to map
 legend.addTo(myMap);
 }
